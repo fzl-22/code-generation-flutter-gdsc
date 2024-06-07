@@ -2,10 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:code_generation_flutter/src/data/models/user_model.dart';
 import 'package:code_generation_flutter/src/data/repositories/user_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';
 
+@injectable
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({
     required UserRepository repository,

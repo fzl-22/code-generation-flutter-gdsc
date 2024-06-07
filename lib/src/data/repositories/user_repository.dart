@@ -3,7 +3,9 @@ import 'package:code_generation_flutter/core/errors/failures.dart';
 import 'package:code_generation_flutter/src/data/models/user_model.dart';
 import 'package:code_generation_flutter/src/data/providers/user_provider.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class UserRepository {
   const UserRepository({
     required UserProvider provider,

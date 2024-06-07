@@ -1,7 +1,9 @@
 import 'package:code_generation_flutter/core/errors/exceptions.dart';
 import 'package:code_generation_flutter/src/data/models/user_model.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class UserProvider {
   const UserProvider({
     required Dio dio,
