@@ -1,38 +1,16 @@
 part of 'user_bloc.dart';
 
-sealed class UserState extends Equatable {
-  const UserState();
+@freezed
+sealed class UserState with _$UserState {
+  const factory UserState.userInitial() = UserInitial;
 
-  @override
-  List<Object> get props => [];
-}
+  const factory UserState.gettingUsers() = GettingUsers;
 
-final class UserInitial extends UserState {
-  const UserInitial();
-}
+  const factory UserState.usersLoaded({
+    required List<UserModel> users,
+  }) = UsersLoaded;
 
-final class GettingUsers extends UserState {
-  const GettingUsers();
-}
-
-final class UsersLoaded extends UserState {
-  const UsersLoaded({
-    required this.users,
-  });
-
-  final List<UserModel> users;
-
-  @override
-  List<Object> get props => [users];
-}
-
-final class GetUsersError extends UserState {
-  const GetUsersError({
-    required this.message,
-  });
-
-  final String message;
-
-  @override
-  List<Object> get props => [message];
+  const factory UserState.getUsersError({
+    required String message,
+  }) = GetUsersError;
 }
