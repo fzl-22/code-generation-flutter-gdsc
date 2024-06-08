@@ -18,7 +18,7 @@ class UserProvider {
       final response = await _dio.get<Map<String, dynamic>>(path);
 
       final users = (response.data!['data'] as List<dynamic>)
-          .map((user) => UserModel.fromMap(user as Map<String, dynamic>))
+          .map((user) => UserModel.fromJson(user as Map<String, dynamic>))
           .toList();
 
       return users;

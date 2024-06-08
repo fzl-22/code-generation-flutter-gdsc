@@ -1,68 +1,19 @@
-import 'dart:convert';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class UserModel extends Equatable {
-  const UserModel({
-    required this.id,
-    required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.avatar,
-  });
+part 'user_model.freezed.dart';
+part 'user_model.g.dart';
 
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
-      id: map['id'] as int,
-      email: map['email'] as String,
-      firstName: map['first_name'] as String,
-      lastName: map['last_name'] as String,
-      avatar: map['avatar'] as String,
-    );
-  }
+@freezed
+class UserModel with _$UserModel {
+  @JsonSerializable(explicitToJson: true)
+  const factory UserModel({
+    @JsonKey(name: 'id') required int id,
+    @JsonKey(name: 'email') required String email,
+    @JsonKey(name: 'first_name') required String firstName,
+    @JsonKey(name: 'last_name') required String lastName,
+    @JsonKey(name: 'avatar') required String avatar,
+  }) = _UserModel;
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  final int id;
-  final String email;
-  final String firstName;
-  final String lastName;
-  final String avatar;
-
-  UserModel copyWith({
-    int? id,
-    String? email,
-    String? firstName,
-    String? lastName,
-    String? avatar,
-  }) {
-    return UserModel(
-      id: id ?? this.id,
-      email: email ?? this.email,
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
-      avatar: avatar ?? this.avatar,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'email': email,
-      'first_name': firstName,
-      'last_name': lastName,
-      'avatar': avatar,
-    };
-  }
-
-  String toJson() => json.encode(toMap());
-
-  @override
-  String toString() {
-    return 'UserModel(id: $id, email: $email, firstName: $firstName, '
-        'lastName: $lastName, avatar: $avatar)';
-  }
-
-  @override
-  List<Object> get props => [id];
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 }
